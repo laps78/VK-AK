@@ -11,11 +11,18 @@
  **/
 
 // Initial prefs
+const targetURL = "https://vk.com/friends?act=find";
 const minTimeToClick = 10;
 const maxTimeToClick = 30;
 const autostart = false;
 const tasks = [];
 const logs = [];
+
+/**
+ * this function checks url
+ * @returns true or false
+ */
+const checkLocation = () => (window.location.href === targetURL ? true : false);
 
 const findDataOnPage = () => {
   // init
@@ -39,7 +46,7 @@ const findDataOnPage = () => {
 };
 
 /**
- *
+ * this function shuffles found links
  * @param {HTMLCollection} collection
  * @returns sorted collection in random order
  */
@@ -47,7 +54,7 @@ const shuffleData = (collection) =>
   collection.sort((a, b) => Math.random() - 0.5);
 
 /**
- *
+ * this function generates random interval in range of arguments
  * @param {number} min
  * @param {number} max
  * @returns value of timeout to make click in seconds
@@ -61,18 +68,19 @@ const setRandomInterval = (min, max) => {
  * @param {object} friend with "name" & "link"
  */
 const clickThisLink = (friend) => {
+  debugger;
   //friend.link.click();
-  console.info(
-    `Запрос на добавление в друзья отправлен пользователю ${friend.name}.`
-  );
-  logs.push(
-    `Запрос на добавление в друзья отправлен пользователю ${friend.name}.`
-  );
-};
-
-const checkTasks = () => {
-  const isCompleted = Promise.all(tasks);
-  isCompleted.then(endApp()).catch((err) => promiseReject(err));
+  const time = new Date();
+  const hours = time.getHours();
+  hours < 10 ? (hours = `0${hours}`) : `${hours}`;
+  const minutes = time.getMinutes();
+  minutes < 10 ? (minutes = `0${minutes}`) : `${minutes}`;
+  const seconds = time.getSeconds();
+  seconds < 10 ? (seconds = `0${seconds}`) : `${seconds}`;
+  const timestamp = `${hours}:${minutes}:${seconds}`;
+  const logString = `Запрос на добавление в друзья отправлен пользователю ${friend.name} в ${timestamp}.`;
+  console.info(logString);
+  logs.push(logString);
 };
 
 /**
@@ -80,17 +88,8 @@ const checkTasks = () => {
  * @param {array} items
  * @param {number} timeout
  */
-const clickItemWithTimeout = async (item, timeout) => {
-  const newTask = new Promise((resolve, reject) => {
-    window.setTimeout(resolve(), timeout * 1000, item);
-  });
-  tasks.push(newTask);
-  newTask.then(clickThisLink(item));
-};
-
-const promiseReject = (err) => {
-  console.error(`L.A.P.S. Lab: что-то не так в Promisse: ${err}`);
-};
+const clickItemWithTimeout = (item, timeout) =>
+  window.setTimeout(clickThisLink, timeout * 1000, item);
 
 const endApp = () => {
   console.info("L.A.P.S. Lab: выгрузка логов:");
@@ -108,16 +107,14 @@ const makeWork = (data) => {
   let prevTimeoutSum = 0;
   let newTimeout = null;
 
-  const asyncActions = (data) => {
-    data.forEach((item) => {
-      newTimeout = setRandomInterval(minTimeToClick, maxTimeToClick);
-      clickItemWithTimeout(item, prevTimeoutSum + newTimeout);
-      prevTimeoutSum += newTimeout;
-      if (data.length === tasks.length) {
-        checkTasks();
-      }
-    });
-  };
+  data.forEach((item) => {
+    newTimeout = setRandomInterval(minTimeToClick, maxTimeToClick);
+    clickItemWithTimeout(item, prevTimeoutSum + newTimeout);
+    prevTimeoutSum += newTimeout;
+    if (data.length === tasks.length) {
+      checkTasks();
+    }
+  });
 };
 
 const app = () => {
@@ -140,5 +137,14 @@ const app = () => {
 };
 
 window.addEventListener("DOMContentLoaded", (event) => {
-  app();
+  console.log("content loaded!");
+  const revokeInterval = window.setInterval(function () {
+    if (checkLocation) {
+      console.warn("correct href!!!");
+      clearInterval(revokeInterval);
+      app();
+    } else {
+      console.warn("wrong href!");
+    }
+  }, 1000);
 });
