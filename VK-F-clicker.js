@@ -12,8 +12,8 @@
 
 // Initial prefs
 const targetURL = "https://vk.com/friends?act=find";
-const minTimeToClick = 1;
-const maxTimeToClick = 2;
+const minTimeToClick = 10;
+const maxTimeToClick = 30;
 const autostart = false;
 const tasks = [];
 const logs = [];
