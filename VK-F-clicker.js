@@ -12,8 +12,8 @@
 
 // Initial prefs
 const targetURL = "https://vk.com/friends?act=find";
-const minTimeToClick = 10;
-const maxTimeToClick = 30;
+const minTimeToClick = 1;
+const maxTimeToClick = 2;
 const autostart = false;
 const tasks = [];
 const logs = [];
@@ -89,7 +89,7 @@ const clickThisLink = (friend) => {
 
   // prepare log string
   const timestamp = getTimeStamp();
-  const logString = `Запрос в друзья отправлен пользователю ${friend.name} в ${timestamp}.`;
+  const logString = `Запрос в друзья отправлен: ${friend.name} в ${timestamp}.`;
 
   // log string push
   console.info(logString);
@@ -99,6 +99,17 @@ const clickThisLink = (friend) => {
   if (tasks.length === 0) {
     endApp();
   }
+};
+
+const prepareLogsParagraph = () => {
+  let logsParagraph = new String();
+  logs.forEach((logItem) => {
+    logsParagraph = logsParagraph + logItem + "\n";
+  });
+  logsParagraph +=
+    "-----------------------\nL.A.P.S. Lab: автокликер закончил работу. Для повторного запуска скрипта обновите страницу.";
+  alert(logsParagraph);
+  return logsParagraph;
 };
 
 /**
@@ -112,10 +123,12 @@ const clickItemWithTimeout = (item, timeout) =>
 const endApp = () => {
   console.info("L.A.P.S. Lab: завершение...");
   if (logs.length > 0) {
-    logs.forEach((item) => console.info(item));
+    prepareLogsParagraph();
     logs.length = 0;
   } else {
-    console.info(`L.A.P.S. Lab: логи автокликера не обнаружены.`);
+    alert(
+      `L.A.P.S. Lab: Логи автокликера не обнаружены.\nАвтокликер закончил работу. Для повторного запуска скрипта обновите страницу.`
+    );
   }
   console.info(
     "L.A.P.S. Lab: автокликер закончил работу. Для повторного запуска скрипта обновите страницу."
@@ -147,7 +160,7 @@ const app = () => {
     makeWork(shuffledData);
   } else {
     const start = confirm(
-      `найдено ${foundData.length} рекомендаций. Добавить?`
+      `L.A.P.S. Lab VK friends autoclicker:\n------------------------------------\nНайдено ${foundData.length} рекомендаций. Добавить?`
     );
     start ? makeWork(shuffledData) : endApp();
   }
