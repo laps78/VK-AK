@@ -45,6 +45,17 @@ const findDataOnPage = () => {
   return data;
 };
 
+const getTimeStamp = () => {
+  const time = new Date();
+  let hours = time.getHours();
+  hours < 10 ? (hours = `0${hours}`) : `${hours}`;
+  let minutes = time.getMinutes();
+  minutes < 10 ? (minutes = `0${minutes}`) : `${minutes}`;
+  let seconds = time.getSeconds();
+  seconds < 10 ? (seconds = `0${seconds}`) : `${seconds}`;
+  return `${hours}:${minutes}:${seconds}`;
+};
+
 /**
  * this function shuffles found links
  * @param {HTMLCollection} collection
@@ -68,19 +79,26 @@ const setRandomInterval = (min, max) => {
  * @param {object} friend with "name" & "link"
  */
 const clickThisLink = (friend) => {
-  debugger;
+  // do work
   //friend.link.click();
-  const time = new Date();
-  const hours = time.getHours();
-  hours < 10 ? (hours = `0${hours}`) : `${hours}`;
-  const minutes = time.getMinutes();
-  minutes < 10 ? (minutes = `0${minutes}`) : `${minutes}`;
-  const seconds = time.getSeconds();
-  seconds < 10 ? (seconds = `0${seconds}`) : `${seconds}`;
-  const timestamp = `${hours}:${minutes}:${seconds}`;
-  const logString = `Запрос на добавление в друзья отправлен пользователю ${friend.name} в ${timestamp}.`;
+
+  // remove task from array tasks
+  if (tasks.find((item) => item.name === friend.name) !== -1) {
+    tasks.splice(tasks.indexOf(friend.name), 1);
+  }
+
+  // prepare log string
+  const timestamp = getTimeStamp();
+  const logString = `Запрос в друзья отправлен пользователю ${friend.name} в ${timestamp}.`;
+
+  // log string push
   console.info(logString);
   logs.push(logString);
+
+  // end app if finished
+  if (tasks.length === 0) {
+    endApp();
+  }
 };
 
 /**
@@ -92,15 +110,16 @@ const clickItemWithTimeout = (item, timeout) =>
   window.setTimeout(clickThisLink, timeout * 1000, item);
 
 const endApp = () => {
-  console.info("L.A.P.S. Lab: выгрузка логов:");
+  console.info("L.A.P.S. Lab: завершение...");
   if (logs.length > 0) {
     logs.forEach((item) => console.info(item));
-    tasks.length = 0;
     logs.length = 0;
   } else {
     console.info(`L.A.P.S. Lab: логи автокликера не обнаружены.`);
   }
-  console.info("L.A.P.S. Lab: автокликер закончил работу.");
+  console.info(
+    "L.A.P.S. Lab: автокликер закончил работу. Для повторного запуска скрипта обновите страницу."
+  );
 };
 
 const makeWork = (data) => {
@@ -111,9 +130,7 @@ const makeWork = (data) => {
     newTimeout = setRandomInterval(minTimeToClick, maxTimeToClick);
     clickItemWithTimeout(item, prevTimeoutSum + newTimeout);
     prevTimeoutSum += newTimeout;
-    if (data.length === tasks.length) {
-      checkTasks();
-    }
+    tasks.push(item.name);
   });
 };
 
@@ -137,14 +154,5 @@ const app = () => {
 };
 
 window.addEventListener("DOMContentLoaded", (event) => {
-  console.log("content loaded!");
-  const revokeInterval = window.setInterval(function () {
-    if (checkLocation) {
-      console.warn("correct href!!!");
-      clearInterval(revokeInterval);
-      app();
-    } else {
-      console.warn("wrong href!");
-    }
-  }, 1000);
+  app();
 });
