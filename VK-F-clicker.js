@@ -121,6 +121,7 @@ const makeWork = (data) => {
 };
 
 const app = () => {
+  debugger;
   console.info(
     "L.A.P.S. Lab: запускаем автокликер для добавления друзей ВК..."
   );
