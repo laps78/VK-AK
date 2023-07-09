@@ -1,8 +1,10 @@
 // ==UserScript==
-// @name     L.A.P.S. Lab VK recomended friends auto clicker
-// @version  0.1
+// @name     VK recomended friends auto clicker
 // @description Автокликер для добавления друзей ВК со страницы рекомендаций
-// @grant    none
+// @author L.A.P.S. Lab
+// @version  0.8
+// @include https://vk.com/friends*
+// @License MIT
 // ==/UserScript==
 
 /* FEATURES:
