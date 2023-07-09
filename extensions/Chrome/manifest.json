@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "VK recomended friends auto clicker",
   "version": "0.9",
-  "description": "Автокликер для добавления друзей ВК со страницы рекомендаций",
+  "description": "Автокликер для добавления друзей ВК со страницы рекомендаций. Разработано L.A.P.S. Lab",
   "icons": {
     "128": "128.png"
   },
