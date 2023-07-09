@@ -84,7 +84,7 @@ const setRandomInterval = (min, max) => {
  */
 const clickThisLink = (friend) => {
   // do work
-  //friend.link.click();
+  friend.link.click();
 
   // remove task from array tasks
   if (tasks.find((item) => item.name === friend.name) !== -1) {
