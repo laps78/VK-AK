@@ -31,4 +31,4 @@
 
 Скрипт предполагает запуск при каждой перезагрузке страницы.
 
-![screenshot-report](./assets/window-report-alert.png)
+![screenshot-report](./assets/report-new.png)
