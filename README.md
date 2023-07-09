@@ -1,7 +1,6 @@
 # Автокликер для добавления друзей Вконтакте
 
 ![screenshot](./assets/clicker-actions.png)
-![screenshot-report](./assets/window-report-alert.png)
 
 ## Возможности алгоритма
 
@@ -31,3 +30,5 @@
 - отчитывается о выполнении
 
 Скрипт предполагает запуск при каждой перезагрузке страницы.
+
+![screenshot-report](./assets/window-report-alert.png)
