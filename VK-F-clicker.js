@@ -4,6 +4,7 @@
 // @author L.A.P.S. Lab
 // @version  0.8
 // @include https://vk.com/friends*
+// @match
 // @License MIT
 // ==/UserScript==
 
@@ -170,5 +171,7 @@ const app = () => {
 };
 
 window.addEventListener("DOMContentLoaded", (event) => {
-  app();
+  if (window.location.href === targetURL) {
+    app();
+  }
 });
