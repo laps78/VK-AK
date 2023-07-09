@@ -1,6 +1,7 @@
 # Автокликер для добавления друзей Вконтакте
 
 ![screenshot](./assets/clicker-actions.png)
+![screenshot-report](./assets/window-report-alert.png)
 
 ## Возможности алгоритма
 
