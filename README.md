@@ -1,4 +1,7 @@
+# VK recomended friends auto clicker
 # Автокликер для добавления друзей Вконтакте
+
+L.A.P.S. Lab
 
 ![screenshot](./assets/clicker-actions.png)
 
