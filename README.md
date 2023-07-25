@@ -15,7 +15,7 @@ by L.A.P.S. Lab
 - userScript - пользовательский скрипт для браузерных расширений типа [GreaseMonkey](https://ru.wikipedia.org/wiki/Greasemonkey), [TemperMonkey](https://ru.wikipedia.org/wiki/Tampermonkey), e.t.c.
 - Исходного кода на языке программирования javascript, содержащегося [тут](https://github.com/laps78/VK-friends-auto-add/blob/main/vk-friends-clicker.js), в данном репозитории.
 
-В данном репозитории содержится его свободно распространяемый открытый исходный код.
+В данном репозитории содержится его свободно распространяемый открытый [исходный код](https://github.com/laps78/VK-friends-auto-add/blob/main/vk-friends-clicker.js).
 
 ![screenshot](./assets/clicker-actions.png)
 
