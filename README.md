@@ -1,6 +1,21 @@
 # VK recomended friends auto clicker
+
+[TOC]
+
+## Описание программного обеспечения
+
 __Автокликер для добавления друзей Вконтакте__
 by L.A.P.S. Lab
+
+Данный продукт поставляется бесплатно и представляет собой mvp версию расширенного ПО для работы с социальными сетями от лаборатории [L.A.P.S. Lab](https://prolaps.ru)
+
+ПО распространяется свободно в нескольких версиях:
+
+- Google Chrome Extension - расширение для браузера google chrome
+- userScript - пользовательский скрипт для браузерных расширений типа [GreaseMonkey](https://ru.wikipedia.org/wiki/Greasemonkey), [TemperMonkey](https://ru.wikipedia.org/wiki/Tampermonkey), e.t.c.
+- Исходного кода на языке программирования javascript, содержащегося [тут](https://github.com/laps78/VK-friends-auto-add/blob/main/vk-friends-clicker.js), в данном репозитории.
+
+В данном репозитории содержится его свободно распространяемый открытый исходный код.
 
 ![screenshot](./assets/clicker-actions.png)
 
