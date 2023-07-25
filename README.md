@@ -49,3 +49,7 @@ by L.A.P.S. Lab
 Скрипт предполагает запуск при каждой перезагрузке страницы.
 
 ![screenshot-report](./assets/report-new.png)
+
+## Откуда можно скачать и установить userScripts
+
+- [База пользовательских скриптов Greasy Fork](https://greasyfork.org/ru/scripts/470474-vk-recomended-friends-auto-clicker)
