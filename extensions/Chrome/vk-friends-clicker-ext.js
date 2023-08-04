@@ -1,18 +1,9 @@
-// ==UserScript==
-// @namespace prolaps.uxp.ru
-// @name     VK recomended friends auto clicker
-// @description Автокликер для добавления друзей ВК со страницы рекомендаций
-// @author L.A.P.S. Lab
-// @version  0.8
-// @include https://vk.com/friends*
-// @match https://vk.com/friends?act=find
-// @License MIT
-// ==/UserScript==
-
 /* FEATURES:
  * 1. variable click interval delay
  * 2. click all links in random order
  **/
+
+import HotkeysUI from "./modules/hotkeys.ui";
 
 // Initial prefs
 const targetURL = "https://vk.com/friends?act=find";
@@ -151,7 +142,7 @@ const makeWork = (data) => {
   });
 };
 
-const app = () => {
+export const app = () => {
   console.info(
     "L.A.P.S. Lab: запускаем автокликер для добавления друзей ВК..."
   );
@@ -172,6 +163,8 @@ const app = () => {
 
 window.addEventListener("load", (event) => {
   if (window.location.href === targetURL) {
-    app();
+    new HotkeysUI();
   }
 });
+
+export default app;
