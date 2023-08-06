@@ -10,7 +10,7 @@ export default class HotkeysUI {
     } else {
       this.config = config;
     }
-
+    // TODO код клавиши????
     (this.#metaData.mainListener = window.addEventListener("keydown")),
       (event) => {
         if (event.key === "alt") {
@@ -20,6 +20,7 @@ export default class HotkeysUI {
     this.#metaData.listeners = [];
   }
 
+  // TODO код клавиши????
   activateMainListener() {
     this.metaData.listeners.push(
       window.addEventListener("keydown", (event) => {

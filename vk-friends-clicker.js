@@ -1,6 +1,6 @@
 // ==UserScript==
-// @namespace prolaps.uxp.ru
-// @name     VK recomended friends auto clicker
+// @namespace prolaps.ru
+// @name VK recomended friends auto clicker
 // @description Автокликер для добавления друзей ВК со страницы рекомендаций
 // @author L.A.P.S. Lab
 // @version  0.8
