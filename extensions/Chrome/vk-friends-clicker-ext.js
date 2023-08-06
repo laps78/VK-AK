@@ -10,6 +10,7 @@ const targetURL = "https://vk.com/friends?act=find";
 const minTimeToClick = 10;
 const maxTimeToClick = 30;
 const autostart = false;
+let hotkeysUI = null;
 const tasks = [];
 const logs = [];
 
@@ -117,6 +118,11 @@ const clickItemWithTimeout = (item, timeout) =>
 
 const endApp = () => {
   console.info("L.A.P.S. Lab: завершение...");
+  console.info(
+    "Удаление обработчиков событий клавиатуры...\n",
+    (hotkeysUI.kill() && "Обработчики событий удалены.") ||
+      "hotkeysUI.kill() failed!"
+  );
   if (logs.length > 0) {
     prepareLogsParagraph();
     logs.length = 0;
@@ -158,12 +164,13 @@ export const app = () => {
       `L.A.P.S. Lab VK friends autoclicker:\n------------------------------------\nНайдено ${foundData.length} рекомендаций. Добавить?`
     );
     start ? makeWork(shuffledData) : endApp();
+    endApp();
   }
 };
 
 window.addEventListener("load", (event) => {
   if (window.location.href === targetURL) {
-    new HotkeysUI();
+    hotkeysUI = new HotkeysUI();
   }
 });
 
