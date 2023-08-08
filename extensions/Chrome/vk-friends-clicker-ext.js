@@ -3,8 +3,6 @@
  * 2. click all links in random order
  **/
 
-import HotkeysUI from "./modules/hotkeys.ui";
-
 // Initial prefs
 const targetURL = "https://vk.com/friends?act=find";
 const minTimeToClick = 10;
@@ -13,6 +11,54 @@ const autostart = false;
 let hotkeysUI = null;
 const tasks = [];
 const logs = [];
+
+// TODO следующий класс описан в соответствующем модуле
+const defaultConfig = {};
+class HotkeysUI {
+  #metaData = {};
+  constructor(config) {
+    if (this.config === undefined) {
+      this.config = defaultConfig;
+    } else {
+      this.config = config;
+    }
+
+    this.#metaData.listeners = [];
+    this.activateKeyboardListener();
+  }
+
+  activateKeyboardListener() {
+    this.#metaData.listeners.push(
+      window.addEventListener("keydown", (event) => {
+        if (event.altKey && (event.key === "˙" || event.key === "Ó")) {
+          event.preventDefault();
+          console.log("[L.A.P.S. Lab] activate app by hotkey...");
+          app();
+        }
+      })
+    );
+  }
+
+  /**
+   * удаляет все слушатели событий из #metadata.listeners
+   */
+  deactivateListeners() {
+    if (this.#metaData.listeners && this.#metaData.listeners.length > 0) {
+      this.#metaData.listeners.forEach((listener) => {
+        window.removeEventListener("keydown", listener);
+      });
+    }
+  }
+
+  /**
+   * удаляет все слушатели событий
+   * потом будет удалять экземпляр класса
+   */
+  kill() {
+    this.deactivateListeners();
+  }
+}
+// TODO конец удаляемого класса
 
 /**
  * this function checks url
@@ -148,7 +194,7 @@ const makeWork = (data) => {
   });
 };
 
-export const app = () => {
+const app = () => {
   console.info(
     "L.A.P.S. Lab: запускаем автокликер для добавления друзей ВК..."
   );
@@ -173,5 +219,3 @@ window.addEventListener("load", (event) => {
     hotkeysUI = new HotkeysUI();
   }
 });
-
-export default app;

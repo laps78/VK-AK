@@ -16,10 +16,12 @@ export default class HotkeysUI {
   }
 
   activateKeyboardListener() {
+    console.log("eListener add...");
     this.metaData.listeners.push(
       window.addEventListener("keydown", (event) => {
         if (event.altKey && (event.key === "˙" || event.key === "Ó")) {
           event.preventDefault();
+          console.log("activate app");
           app();
         }
       })
