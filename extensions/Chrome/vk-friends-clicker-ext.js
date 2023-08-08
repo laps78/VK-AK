@@ -30,6 +30,7 @@ class HotkeysUI {
   activateKeyboardListener() {
     this.#metaData.listeners.push(
       window.addEventListener("keydown", (event) => {
+        console.log("add listener...");
         if (event.altKey && (event.key === "˙" || event.key === "Ó")) {
           event.preventDefault();
           console.log("[L.A.P.S. Lab] activate app by hotkey...");
@@ -63,8 +64,11 @@ class HotkeysUI {
 /**
  * this function checks url
  * @returns true or false
+ *
+ * Проверка идет по вхождению подстроки в строку!
  */
-const checkLocation = () => (window.location.href === targetURL ? true : false);
+const checkLocation = () =>
+  window.location.href.includes(targetURL) ? true : false;
 
 const findDataOnPage = () => {
   // init
@@ -117,12 +121,14 @@ const setRandomInterval = (min, max) => {
 };
 
 /**
- *
+ * TODO не подставляется имя при формировании лог-строки по причине того, что референс гамно! Перепиши референс от кнопки - и тогда-то все и заработает, блэт!
+ * я тут пошарил в консоли и нашарил такой референс: .parentElement.parentElement.children[2].children[0].textContent, но после того,
+ * как я эту хню вставил в @logString вместо .name, всек хуям сломалось
  * @param {object} friend with "name" & "link"
  */
 const clickThisLink = (friend) => {
   // do work
-  friend.link.click();
+  friend.click();
 
   // remove task from array tasks
   if (tasks.find((item) => item.name === friend.name) !== -1) {
@@ -200,22 +206,37 @@ const app = () => {
   );
   // define & prepare data
   const foundData = findDataOnPage();
-  const shuffledData = shuffleData(foundData);
+  let shuffledData;
+  // if (foundData.length > 0) {
+  //   console.log(`foundData.length = ${foundData.length}`);
+  //   shuffledData = shuffleData(foundData);
+  // } else {
+  console.log("searshing another type of buttons...");
+  const alternativeFoundData = Array.from(
+    document.querySelectorAll(".FlatButton")
+  ).filter((elem) =>
+    elem.textContent.toLowerCase().includes("добавить в друзья")
+  );
+  console.log(`found ${alternativeFoundData.length} instances`);
+  shuffledData = shuffleData(alternativeFoundData);
+  //}
 
   // make work
   if (autostart) {
     makeWork(shuffledData);
   } else {
     const start = confirm(
-      `L.A.P.S. Lab VK friends autoclicker:\n------------------------------------\nНайдено ${foundData.length} рекомендаций. Добавить?`
+      `L.A.P.S. Lab VK friends autoclicker:\n------------------------------------\nНайдено ${alternativeFoundData.length} рекомендаций. Добавить?`
     );
     start ? makeWork(shuffledData) : endApp();
     endApp();
   }
 };
 
-window.addEventListener("load", (event) => {
-  if (window.location.href === targetURL) {
-    hotkeysUI = new HotkeysUI();
-  }
-});
+const activateExtensionOnLoad = () => {
+  window.addEventListener("load", (event) => (hotkeysUI = new HotkeysUI()));
+};
+
+if (checkLocation()) {
+  activateExtensionOnLoad();
+}
