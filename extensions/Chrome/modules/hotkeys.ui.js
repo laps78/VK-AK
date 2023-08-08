@@ -10,35 +10,25 @@ export default class HotkeysUI {
     } else {
       this.config = config;
     }
-    // TODO код клавиши????
-    (this.#metaData.mainListener = window.addEventListener("keydown")),
-      (event) => {
-        if (event.key === "alt") {
-          this.activateMainListener();
-        }
-      };
+
     this.#metaData.listeners = [];
+    this.activateKeyboardListener();
   }
 
-  // TODO код клавиши????
-  activateMainListener() {
+  activateKeyboardListener() {
     this.metaData.listeners.push(
       window.addEventListener("keydown", (event) => {
-        switch (event.key) {
-          case "h" || "H":
-            app();
-            break;
-          default:
-            console.info("Нет такой горячей клавиши или команды!");
+        if (event.altKey && (event.key === "˙" || event.key === "Ó")) {
+          event.preventDefault();
+          app();
         }
       })
     );
   }
 
-  deactivateMainListener() {
-    window.removeEventListener(this.#metaData.mainListener);
-  }
-
+  /**
+   * удаляет все слушатели событий из #metadata.listeners
+   */
   deactivateListeners() {
     if (this.#metaData.listeners && this.#metaData.listeners.length > 0) {
       this.#metaData.listeners.forEach((listener) => {
@@ -46,12 +36,12 @@ export default class HotkeysUI {
       });
     }
   }
+
   /**
    * удаляет все слушатели событий
    * потом будет удалять экземпляр класса
    */
   kill() {
     this.deactivateListeners();
-    this.deactivateMainListener();
   }
 }
