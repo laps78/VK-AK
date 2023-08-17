@@ -137,7 +137,9 @@ const clickThisLink = (friend) => {
 
   // prepare log string
   const timestamp = getTimeStamp();
-  const logString = `Запрос в друзья отправлен: ${friend.name} в ${timestamp}.`;
+  const logString = `(${logs.length + 1})Запрос в друзья отправлен: ${
+    friend.name
+  } в ${timestamp}.`;
 
   // log string push
   console.info(logString);
@@ -234,7 +236,10 @@ const app = () => {
 };
 
 const activateExtensionOnLoad = () => {
-  window.addEventListener("load", (event) => (hotkeysUI = new HotkeysUI()));
+  window.addEventListener("load", (event) => {
+    hotkeysUI = new HotkeysUI();
+    console.log("EVENT: 'load'");
+  });
 };
 
 if (checkLocation()) {
