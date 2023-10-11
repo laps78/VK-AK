@@ -30,8 +30,9 @@ class HotkeysUI {
   activateKeyboardListener() {
     this.#metaData.listeners.push(
       window.addEventListener("keydown", (event) => {
-        console.log("add listener...");
-        if (event.altKey && (event.key === "˙" || event.key === "Ó")) {
+        console.log("keyDown event...");
+        // if (event.altKey && (event.key === "˙" || event.key === "Ó")) {
+        if (event.altKey && (event.key === "h" || event.key === "H")) {
           event.preventDefault();
           console.log("[L.A.P.S. Lab] activate app by hotkey...");
           app();
