@@ -1,9 +1,9 @@
 // ==UserScript==
 // @namespace prolaps.uxp.ru
-// @name     VK recomended friends auto clicker
-// @description Автокликер для добавления друзей ВК со страницы рекомендаций
-// @author L.A.P.S. Lab
-// @version  0.8
+// @name     VK-AK
+// @description Мощный инструмент для автоматизации рутинных действий в VK UI. Автокликер для добавления друзей ВК со страницы рекомендаций. Разработано L.A.P.S. Lab (2024)
+// @author sovtem@gmail.com
+// @version  0.8.2
 // @include https://vk.com/friends*
 // @match https://vk.com/friends?act=find
 // @License MIT
