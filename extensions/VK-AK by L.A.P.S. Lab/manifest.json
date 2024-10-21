@@ -6,7 +6,8 @@
   "icons": {
     "512": "./assets/VK_AK_512.png",
     "256": "./assets/VK_AK_256.png",
-    "128": "./assets/VK_AK_128.png"
+    "128": "./assets/VK_AK_128.png",
+    "36": "./assets/VK_AK_36.png"
   },
   "content_scripts": [
     {
