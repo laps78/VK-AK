@@ -1,14 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "VK recomended friends auto clicker",
-  "version": "0.9",
+  "name": "VK-AK пользовательский автомат Вконтакте",
+  "version": "1.0",
   "description": "Автокликер для добавления друзей ВК со страницы рекомендаций. Разработано @2023 L.A.P.S. Lab",
   "icons": {
-    "128": "128.png"
+    "512": "./assets/VK_AK_512.png",
+    "256": "./assets/VK_AK_256.png",
+    "128": "./assets/VK_AK_128.png"
   },
   "content_scripts": [
     {
-      "matches": ["https://vk.com/friends?act=find"],
+      "matches": ["https://vk.com/friends?act=find*"],
       "js": ["vk-friends-clicker-ext.js"]
     }
   ]
