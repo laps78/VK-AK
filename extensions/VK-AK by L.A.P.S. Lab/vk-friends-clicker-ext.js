@@ -6,7 +6,6 @@
 // Initial prefs
 const targetURL = "https://vk.com/friends?act=find";
 const minTimeToClick = 10;
-oiupoiuyp;
 const maxTimeToClick = 30;
 const autostart = false;
 let hotkeysUI = null;
