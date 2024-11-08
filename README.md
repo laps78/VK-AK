@@ -75,7 +75,7 @@ by L.A.P.S. Lab
 
 ## Инcтрукция по установке расширения Chrome
 
-1. Скачиваем .ZIP архив с расширением [из репозитория](./extensions/Chrome.zip) или [из магазина (ожидается)](https://prolaps.ru/shop)
+1. Скачиваем .ZIP архив с расширением [из репозитория](./extensions/VK-AK_by_LAPSLab.zip) или [из магазина PROLAPS.RU](https://prolaps.ru/product/vk-friends-autocklicker-v-0-1/)
 2. Если необходимо, перенесите в удобное для вас место и распакуйте ахрхив с расширением
 3. Откройте браузер chrome и наберите в адресной строке chrome://extensions
    ![наберите в адресной строке chrome://extensions](./assets/new-howto/goto-extensions.png)
